@@ -29,16 +29,24 @@ async function readCSV(path) {
 }
 
 function addTo(subject, type, row) {
-  if (checkAvailable(subject, type)) {
+  if (checkAvailable(subject, type,row)) {
     list[subject][type].push(row)
     list[subject].count[type]++
     return true
   }
   return false
 }
-function checkAvailable(subject, type) {
+function checkAvailable(subject, type,student) {
   try {
-    if (list[subject].count[type] < list[subject].max[type] - list[subject].female[type]) {
+    let x = 0;
+    if(subject == "Agriculture"){
+      let y = (list[subject].max[type] - x)
+      console.log(y)
+    }
+    if(list[subject].female != undefined){
+      x = list[subject].female[type]
+    }
+    if (list[subject].count[type] < (list[subject].max[type] - x)) {
       return true
     } else if (student.GENDER == "Female" || student.Gender == "Female") {
       if (list[subject].female) {
